@@ -5,15 +5,17 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections", "Collections\Collections.csproj", "{8A8A039D-2EF5-4373-B1FE-F69B0357AC01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericsInfrastructure", "GenericsInfrastructure\GenericsInfrastructure.csproj", "{5C0B4433-B1B5-401E-8D0D-09534F51E76A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericsInfrastructure", "GenericsInfrastructure\GenericsInfrastructure.csproj", "{5C0B4433-B1B5-401E-8D0D-09534F51E76A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericsAndInheritance", "GenericsAndInheritance\GenericsAndInheritance.csproj", "{0C96072C-0492-4AD1-B135-27E8FF0228AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericsAndInheritance", "GenericsAndInheritance\GenericsAndInheritance.csproj", "{0C96072C-0492-4AD1-B135-27E8FF0228AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericMethods", "GenericMethods\GenericMethods.csproj", "{010BD2F1-BC34-43B5-89CE-9C5652DB2C45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericMethods", "GenericMethods\GenericMethods.csproj", "{010BD2F1-BC34-43B5-89CE-9C5652DB2C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtherMembers", "OtherMembers\OtherMembers.csproj", "{7D7E1F77-D160-4AD3-9827-155CDD2F938C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtherMembers", "OtherMembers\OtherMembers.csproj", "{7D7E1F77-D160-4AD3-9827-155CDD2F938C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullableValueTypes", "NullableTypes\NullableValueTypes.csproj", "{1F33BA2B-FF9B-4C2D-9F8D-254C27F4979E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NullableValueTypes", "NullableValueTypes\NullableValueTypes.csproj", "{7EF361A1-FE8F-4EF1-8E5E-CD4F6FF93228}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxingAndUnboxing", "BoxingAndUnboxing\BoxingAndUnboxing.csproj", "{EA26B399-3401-4DFA-8FBA-EA46B7EB5FC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +43,14 @@ Global
 		{7D7E1F77-D160-4AD3-9827-155CDD2F938C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D7E1F77-D160-4AD3-9827-155CDD2F938C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D7E1F77-D160-4AD3-9827-155CDD2F938C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F33BA2B-FF9B-4C2D-9F8D-254C27F4979E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F33BA2B-FF9B-4C2D-9F8D-254C27F4979E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F33BA2B-FF9B-4C2D-9F8D-254C27F4979E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F33BA2B-FF9B-4C2D-9F8D-254C27F4979E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EF361A1-FE8F-4EF1-8E5E-CD4F6FF93228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EF361A1-FE8F-4EF1-8E5E-CD4F6FF93228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EF361A1-FE8F-4EF1-8E5E-CD4F6FF93228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EF361A1-FE8F-4EF1-8E5E-CD4F6FF93228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA26B399-3401-4DFA-8FBA-EA46B7EB5FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA26B399-3401-4DFA-8FBA-EA46B7EB5FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA26B399-3401-4DFA-8FBA-EA46B7EB5FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA26B399-3401-4DFA-8FBA-EA46B7EB5FC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
