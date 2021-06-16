@@ -22,15 +22,12 @@ namespace ReadExcelData
 
                     for (int i = worksheet.Dimension.Start.Row + 1; i <= worksheet.Dimension.End.Row; i++)
                     {
-                        if (worksheet.Cells[i, 1].Value != null)
-                        {
-                            excelData.Add(new Sales(
-                                worksheet.Cells[i, 1].Value.ToString(),
-                                worksheet.Cells[i, 2].Value.ToString(),
-                                (int)(double)worksheet.Cells[i, 3].Value,
-                                (double)worksheet.Cells[i, 4].Value
-                                ));
-                        }
+                        excelData.Add(new Sales(
+                            worksheet.Cells[i, 1].Value.ToString(),
+                            worksheet.Cells[i, 2].Value.ToString(),
+                            (int)(double)worksheet.Cells[i, 3].Value,
+                            (double)worksheet.Cells[i, 4].Value
+                            ));
                     }
                 }
             }

@@ -15,8 +15,15 @@ namespace ReadExcelData
 
         public Sales(string rep, string item, int unit, double unitCost)
         {
-            Rep = rep;
-            Item = item;
+            //if (rep == null)
+            //    throw new ArgumentException("Rep can't be null");
+            //else
+                Rep = rep;
+
+            if (null == item)
+                throw new ArgumentException("Item can't be null");
+            else
+                Item = item;
 
             if (unit < 0)
                 throw new ArgumentException("Unit count can't be negative number");
