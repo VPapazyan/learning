@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity_CodeFirst.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210621094410_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210624071627_FluentAPI_Config")]
+    partial class FluentAPI_Config
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -197,7 +197,7 @@ namespace Entity_CodeFirst.Migrations
             modelBuilder.Entity("Entity_CodeFirst.Entities.Product", b =>
                 {
                     b.HasOne("Entity_CodeFirst.Entities.ProductList", "ProductList")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("ProductListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -240,6 +240,11 @@ namespace Entity_CodeFirst.Migrations
             modelBuilder.Entity("Entity_CodeFirst.Entities.OrderHistory", b =>
                 {
                     b.Navigation("Customers");
+                });
+
+            modelBuilder.Entity("Entity_CodeFirst.Entities.ProductList", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entity_CodeFirst.FluentApiConfigs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Entity_CodeFirst.Entities
 {
@@ -30,6 +27,12 @@ namespace Entity_CodeFirst.Entities
                 optionsBuilder.UseSqlServer(connectionString);
             }
             base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new CustomerConfigs());
+            modelBuilder.ApplyConfiguration(new OrderHistoryConfigs());
         }
     }
 }

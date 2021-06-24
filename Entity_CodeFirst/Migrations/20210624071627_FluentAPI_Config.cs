@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Entity_CodeFirst.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class FluentAPI_Config : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
