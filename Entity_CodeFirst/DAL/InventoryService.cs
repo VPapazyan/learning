@@ -9,9 +9,10 @@ namespace Entity_CodeFirst.DAL
 {
     public class InventoryService
     {
+        string conn = "Server=.\\SQLExpress;Database=SalesDB;Trusted_Connection=true";
+
         public async Task CreateInventoryAsync(Inventory inventory)
         {
-            var conn = "Server=.\\SQLExpress;Database=SalesDB;Trusted_Connection=true";
             var query = $"Insert Into Inventories Values({inventory.Name}, {inventory.Price})";
 
             using(var sqlConnection = new SqlConnection(conn))
@@ -25,7 +26,6 @@ namespace Entity_CodeFirst.DAL
 
         public async Task UpdateInventoryAsync(Inventory inventory)
         {
-            var conn = "Server=.\\SQLExpress;Database=SalesDB;Trusted_Connection=true";
             var query = $"Update Inventories Set Name = {inventory.Name}, Price = {inventory.Price}) Where Id = {inventory.Id}";
 
             using (var sqlConnection = new SqlConnection(conn))
@@ -39,7 +39,6 @@ namespace Entity_CodeFirst.DAL
 
         public async Task DeleteInventoryAsync(int inventoryId)
         {
-            var conn = "Server=.\\SQLExpress;Database=SalesDB;Trusted_Connection=true";
             var query = $"Delete From Inventories Where Id = {inventoryId}";
 
             using (var sqlConnection = new SqlConnection(conn))
@@ -54,7 +53,6 @@ namespace Entity_CodeFirst.DAL
         public async Task<List<Inventory>> GetAllInventoriesAsync()
         {
             var result = new List<Inventory>();
-            var conn = "Server=.\\SQLExpress;Database=SalesDB;Trusted_Connection=true";
             var query = $"Delete * Inventories";
 
             using (var sqlConnection = new SqlConnection(conn))
@@ -80,7 +78,6 @@ namespace Entity_CodeFirst.DAL
         public async Task<Inventory> GetInventoryAsync()
         {
             Inventory result = null;
-            var conn = "Server=.\\SQLExpress;Database=SalesDB;Trusted_Connection=true";
             var query = $"Delete * Inventories";
 
             using (var sqlConnection = new SqlConnection(conn))
