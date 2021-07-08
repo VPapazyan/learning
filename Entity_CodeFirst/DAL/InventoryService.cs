@@ -53,7 +53,7 @@ namespace Entity_CodeFirst.DAL
         public async Task<List<Inventory>> GetAllInventoriesAsync()
         {
             var result = new List<Inventory>();
-            var query = $"Delete * Inventories";
+            var query = $"Select * Inventories";
 
             using (var sqlConnection = new SqlConnection(conn))
             {
@@ -75,10 +75,10 @@ namespace Entity_CodeFirst.DAL
             return result;
         }
 
-        public async Task<Inventory> GetInventoryAsync()
+        public async Task<Inventory> GetInventoryAsync(int inventoryId)
         {
             Inventory result = null;
-            var query = $"Delete * Inventories";
+            var query = $"Select * From Inventories Where Id = {inventoryId}";
 
             using (var sqlConnection = new SqlConnection(conn))
             {
