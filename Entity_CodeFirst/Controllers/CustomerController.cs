@@ -37,7 +37,7 @@ namespace Entity_CodeFirst.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCustomerAsync([FromBody] Customer customer)
+        public async Task<IActionResult> AddCustomerAsync([FromBody] Customer customer)
         {
             if (customer == null)
             {
@@ -45,13 +45,13 @@ namespace Entity_CodeFirst.Controllers
             }
             else
             {
-                new CustomerService().AddCustomerAsync(customer);
+                await new CustomerService().AddCustomerAsync(customer);
                 return StatusCode(StatusCodes.Status201Created);
             }
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCustomerAsync([FromRoute] int id, [FromBody] Customer customer)
+        public async Task<IActionResult> UpdateCustomerAsync([FromRoute] int id, [FromBody] Customer customer)
         {
             if (new CustomerService().GetCustomerAsync(id) == null)
             {
@@ -59,13 +59,13 @@ namespace Entity_CodeFirst.Controllers
             }
             else
             {
-                new CustomerService().UpdateCustomerAsync(id, customer);
+                await new CustomerService().UpdateCustomerAsync(id, customer);
                 return Ok("Record updated succesfully");
             }
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCustomerAsync([FromRoute] int id)
+        public async Task<IActionResult> DeleteCustomerAsync([FromRoute] int id)
         {
             if (new CustomerService().GetCustomerAsync(id) == null)
             {
@@ -73,7 +73,7 @@ namespace Entity_CodeFirst.Controllers
             }
             else
             {
-                new CustomerService().DeleteCustomerAsync(id);
+                await new CustomerService().DeleteCustomerAsync(id);
                 return Ok("Customer deleted");
             }
         }
