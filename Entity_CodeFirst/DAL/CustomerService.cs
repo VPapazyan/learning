@@ -16,7 +16,7 @@ namespace Entity_CodeFirst.DAL
             _dbContext = new AppDbContext();
         }
 
-        public async Task<List<CustomerModel>> GetCustomers()
+        public async Task<List<CustomerModel>> GetCustomersAsync()
         {
             var query = from c in _dbContext.Customers
                         select new CustomerModel
@@ -30,36 +30,46 @@ namespace Entity_CodeFirst.DAL
             return customers;
         }
 
-        public async Task AddCustomer(string name, string address)
+        public async Task<List<Customer>> GetCustomerAsync(int id)
         {
-            var customer = new Customer
-            {
-                Name = name,
-                Address = address,
-            };
+            var query = from c in _dbContext.Customers
+                        where c.Id == id
+                        select new Customer
+                        {
+                            OrderHistoryId = c.OrderHistoryId,
+                            Name = c.Name,
+                            Address = c.Address
+                        };
 
+            var customer = await query.ToListAsync();
+
+            return customer;
+        }
+
+        public async Task AddCustomerAsync(Customer customer)
+        {
             await _dbContext.Customers.AddAsync(customer);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateCustomer(int customerId, string name, string address)
+        public async Task UpdateCustomerAsync(int customerId, Customer customer)
         {
-            var customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
+            var newCustomer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
 
             if (customer == null)
             {
-                // TODO 
                 return;
             }
 
-            customer.Name = name;
-            customer.Address = address;
+            newCustomer.OrderHistoryId = customer.OrderHistoryId;
+            newCustomer.Name = customer.Name;
+            newCustomer.Address = customer.Address;
 
-            _dbContext.Customers.Update(customer);
+            _dbContext.Customers.Update(newCustomer);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task RemoveCustomer(int customerId)
+        public async Task DeleteCustomerAsync(int customerId)
         {
             var customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
 
