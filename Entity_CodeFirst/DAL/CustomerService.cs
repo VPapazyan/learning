@@ -30,18 +30,9 @@ namespace Entity_CodeFirst.DAL
             return customers;
         }
 
-        public async Task<List<Customer>> GetCustomerAsync(int id)
+        public async Task<Customer> GetCustomerAsync(int id)
         {
-            var query = from c in _dbContext.Customers
-                        where c.Id == id
-                        select new Customer
-                        {
-                            OrderHistoryId = c.OrderHistoryId,
-                            Name = c.Name,
-                            Address = c.Address
-                        };
-
-            var customer = await query.ToListAsync();
+            var customer = await _dbContext.Customers.FindAsync(id);
 
             return customer;
         }
