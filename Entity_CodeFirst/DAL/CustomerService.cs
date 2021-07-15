@@ -21,6 +21,8 @@ namespace Entity_CodeFirst.DAL
             var query = from c in _dbContext.Customers
                         select new CustomerModel
                         {
+                            Id = c.Id,
+                            OrderHistoryId = c.OrderHistoryId,
                             Name = c.Name,
                             Address = c.Address
                         };
@@ -30,12 +32,41 @@ namespace Entity_CodeFirst.DAL
             return customers;
         }
 
-        public async Task<Customer> GetCustomerAsync(int id)
+        public async Task<List<CustomerModel>> GetCustomerAsync(int id)
         {
-            var customer = await _dbContext.Customers.FindAsync(id);
+            //var customer = await _dbContext.Customers.FindAsync(id);
+            var query = from c in _dbContext.Customers
+                        where c.Id == id
+                        select new CustomerModel
+                        {
+                            Id = c.Id,
+                            OrderHistoryId = c.OrderHistoryId,
+                            Name = c.Name,
+                            Address = c.Address
+                        };
+            
+            var customer = await query.ToListAsync();
 
             return customer;
         }
+
+        //public async Task<CustomerModel> GetCustomerAsync(int id)
+        //{
+        //    //var customer = await _dbContext.Customers.FindAsync(id);
+        //    var query = from c in _dbContext.Customers
+        //                where c.Id == id
+        //                select new CustomerModel
+        //                {
+        //                    Id = c.Id,
+        //                    OrderHistoryId = c.OrderHistoryId,
+        //                    Name = c.Name,
+        //                    Address = c.Address
+        //                };
+
+        //    var customer = await query as CustomerModel;
+
+        //    return customer;
+        //}
 
         public async Task AddCustomerAsync(Customer customer)
         {
