@@ -1,3 +1,4 @@
+using Entity_CodeFirst.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,8 @@ namespace Entity_CodeFirst
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Entity_CodeFirst", Version = "v1" });
             });
+
+            services.AddScoped(typeof(ICustomerService), typeof(CustomerService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entity_CodeFirst.DAL
 {
-    public class CustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly AppDbContext _dbContext;
 
@@ -32,7 +32,7 @@ namespace Entity_CodeFirst.DAL
             return customers;
         }
 
-        public async Task<List<CustomerModel>> GetCustomerAsync(int id)
+        public async Task<CustomerModel> GetCustomerAsync(int id)
         {
             //var customer = await _dbContext.Customers.FindAsync(id);
             var query = from c in _dbContext.Customers
@@ -45,28 +45,10 @@ namespace Entity_CodeFirst.DAL
                             Address = c.Address
                         };
             
-            var customer = await query.ToListAsync();
+            var customer = await query.FirstOrDefaultAsync();
 
             return customer;
         }
-
-        //public async Task<CustomerModel> GetCustomerAsync(int id)
-        //{
-        //    //var customer = await _dbContext.Customers.FindAsync(id);
-        //    var query = from c in _dbContext.Customers
-        //                where c.Id == id
-        //                select new CustomerModel
-        //                {
-        //                    Id = c.Id,
-        //                    OrderHistoryId = c.OrderHistoryId,
-        //                    Name = c.Name,
-        //                    Address = c.Address
-        //                };
-
-        //    var customer = await query as CustomerModel;
-
-        //    return customer;
-        //}
 
         public async Task AddCustomerAsync(Customer customer)
         {

@@ -12,11 +12,11 @@ namespace Entity_CodeFirst.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly CustomerService _customerService;
+        private ICustomerService _customerService;
 
-        public CustomerController()
+        public CustomerController(ICustomerService customerService)
         {
-            _customerService = new CustomerService();
+            _customerService = customerService;
         }
         // GET: api/<CustomerController>
         [HttpGet]
