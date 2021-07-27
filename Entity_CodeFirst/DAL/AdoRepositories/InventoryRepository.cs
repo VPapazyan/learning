@@ -1,11 +1,12 @@
-﻿using Entity_CodeFirst.Entities;
+﻿using Entity_CodeFirst.DAL.Interfaces;
+using Entity_CodeFirst.Entities;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Entity_CodeFirst.DAL
+namespace Entity_CodeFirst.DAL.Repositories
 {
-    public class InventoryService
+    public class InventoryRepository : IInventoryRepository
     {
         string conn = "Server=.\\SQLExpress;Database=SalesDB;Trusted_Connection=true";
 

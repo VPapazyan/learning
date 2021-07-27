@@ -15,19 +15,24 @@ namespace Entity_CodeFirst.Entities
         public DbSet<ProductList> ProductLists { get; set; }
         public DbSet<Sale> Sales { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
-                   .AddJsonFile("appsettings.json")
-                   .Build();
-                var connectionString = configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseSqlServer(connectionString);
-            }
-            base.OnConfiguring(optionsBuilder);
+            Database.EnsureCreated();
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        IConfigurationRoot configuration = new ConfigurationBuilder()
+        //           .SetBasePath(Directory.GetCurrentDirectory())
+        //           .AddJsonFile("appsettings.json")
+        //           .Build();
+        //        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        //        optionsBuilder.UseSqlServer(connectionString);
+        //    }
+        //    base.OnConfiguring(optionsBuilder);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

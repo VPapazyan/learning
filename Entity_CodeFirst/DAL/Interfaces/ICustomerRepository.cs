@@ -3,9 +3,9 @@ using Entity_CodeFirst.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Entity_CodeFirst.DAL
+namespace Entity_CodeFirst.DAL.Interfaces
 {
-    public interface ICustomerService
+    public interface ICustomerRepository
     {
         Task<List<CustomerModel>> GetCustomersAsync();
 

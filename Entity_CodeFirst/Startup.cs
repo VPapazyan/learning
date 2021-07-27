@@ -1,6 +1,10 @@
 using Entity_CodeFirst.DAL;
+using Entity_CodeFirst.DAL.Interfaces;
+using Entity_CodeFirst.DAL.Repositories;
+using Entity_CodeFirst.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +31,16 @@ namespace Entity_CodeFirst
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Entity_CodeFirst", Version = "v1" });
             });
 
-            services.AddScoped(typeof(ICustomerService), typeof(CustomerService));
+            services.AddDbContext<AppDbContext>(options => options
+                                            .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient(typeof(ICustomerRepository), typeof(CustomerRepository));
+            services.AddTransient(typeof(IOrderRepository), typeof(OrderRepository));
+            services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
+
+            //services.AddTransient<ICustomerRepository, CustomerRepository>();
+            //services.AddTransient<IOrderRepository, OrderRepository>();
+            //services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

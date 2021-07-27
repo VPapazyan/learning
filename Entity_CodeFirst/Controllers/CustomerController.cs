@@ -12,17 +12,18 @@ namespace Entity_CodeFirst.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private ICustomerService _customerService;
+        private IUnitOfWork _unitOfWork;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(IUnitOfWork unitOfWork)
         {
-            _customerService = customerService;
+            _unitOfWork = unitOfWork;
         }
+
         // GET: api/<CustomerController>
         [HttpGet]
         public async Task<ActionResult<Customer>> GetCustomersAsync()
         {
-            var customers = await _customerService.GetCustomersAsync();
+            var customers = await _unitOfWork.Customers.GetCustomersAsync();
 
             if (customers == null)
             {
@@ -37,7 +38,7 @@ namespace Entity_CodeFirst.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Customer>> GetCustomerAsync([FromRoute] int id)
         {
-            var customer = await _customerService.GetCustomerAsync(id);
+            var customer = await _unitOfWork.Customers.GetCustomerAsync(id);
 
             if (customer == null)
             {
@@ -58,7 +59,7 @@ namespace Entity_CodeFirst.Controllers
             }
             else
             {
-                await _customerService.AddCustomerAsync(customer);
+                await _unitOfWork.Customers.AddCustomerAsync(customer);
                 return StatusCode(StatusCodes.Status201Created);
             }
         }
@@ -66,13 +67,13 @@ namespace Entity_CodeFirst.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCustomerAsync([FromRoute] int id, [FromBody] Customer customer)
         {
-            if (_customerService.GetCustomerAsync(id) == null)
+            if (_unitOfWork.Customers.GetCustomerAsync(id) == null)
             {
                 return NotFound("No record found matching the given id");
             }
             else
             {
-                await _customerService.UpdateCustomerAsync(id, customer);
+                await _unitOfWork.Customers.UpdateCustomerAsync(id, customer);
                 return Ok("Record updated succesfully");
             }
         }
@@ -80,13 +81,13 @@ namespace Entity_CodeFirst.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomerAsync([FromRoute] int id)
         {
-            if (_customerService.GetCustomerAsync(id) == null)
+            if (_unitOfWork.Customers.GetCustomerAsync(id) == null)
             {
                 return NotFound("There is no such customer");
             }
             else
             {
-                await _customerService.DeleteCustomerAsync(id);
+                await _unitOfWork.Customers.DeleteCustomerAsync(id);
                 return Ok("Customer deleted");
             }
         }

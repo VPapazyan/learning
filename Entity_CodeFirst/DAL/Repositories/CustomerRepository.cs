@@ -1,19 +1,20 @@
-﻿using Entity_CodeFirst.Entities;
+﻿using Entity_CodeFirst.DAL.Interfaces;
+using Entity_CodeFirst.Entities;
 using Entity_CodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Entity_CodeFirst.DAL
+namespace Entity_CodeFirst.DAL.Repositories
 {
-    public class CustomerService : ICustomerService
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly AppDbContext _dbContext;
 
-        public CustomerService()
+        public CustomerRepository(AppDbContext dbContext)
         {
-            _dbContext = new AppDbContext();
+            _dbContext = dbContext;
         }
 
         public async Task<List<CustomerModel>> GetCustomersAsync()
@@ -35,6 +36,7 @@ namespace Entity_CodeFirst.DAL
         public async Task<CustomerModel> GetCustomerAsync(int id)
         {
             //var customer = await _dbContext.Customers.FindAsync(id);
+
             var query = from c in _dbContext.Customers
                         where c.Id == id
                         select new CustomerModel
@@ -60,7 +62,7 @@ namespace Entity_CodeFirst.DAL
         {
             var newCustomer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
 
-            if (customer == null)
+            if (newCustomer == null)
             {
                 return;
             }
